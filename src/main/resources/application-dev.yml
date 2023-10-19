@@ -1,9 +1,11 @@
-
 spring:
+  config:
+    import: optional:certs/config.properties
   datasource:
-    url: jdbc:mysql://localhost:3306/fulafia-campus-election-system
-    username: root
-    password:
+    username: ${DB_USERNAME}
+    url: ${DB_URL}
+    password: ${DB_PASSWORD}
+
   jpa:
     hibernate:
       ddl-auto: create-drop

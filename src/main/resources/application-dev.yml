@@ -1,0 +1,12 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/fulafia-campus-election-system
+    username: root
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true

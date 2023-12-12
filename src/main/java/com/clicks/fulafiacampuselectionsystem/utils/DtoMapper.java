@@ -58,7 +58,8 @@ public class DtoMapper {
                 client.getUssdCode(),
                 client.getAddress(),
                 client.getName(),
-                client.getOwner().getId());
+                client.getOwner().getId(),
+                client.getId());
     }
 
     public ElectionWinnerDto electionWinnerDto(ElectionWinner electionWinner) {

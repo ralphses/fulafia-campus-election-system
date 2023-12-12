@@ -9,6 +9,7 @@ public record ClientDto(
         long ussdCode,
         String address,
         String name,
-        long owner
+        long owner,
+        long id
 ) {
 }

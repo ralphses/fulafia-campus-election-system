@@ -29,6 +29,7 @@ public class VoteService {
             return prepareResponse("Bad request", true);
         }
 
+        //*3*4*5#
         long electionCode = Long.parseLong(splitText[0]);
         long positionCode = Long.parseLong(splitText[1]);
         long candidateCode = Long.parseLong(splitText[2]);

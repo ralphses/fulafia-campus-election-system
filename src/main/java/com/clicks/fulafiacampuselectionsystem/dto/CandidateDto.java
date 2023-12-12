@@ -1,10 +1,10 @@
 package com.clicks.fulafiacampuselectionsystem.dto;
 
-public record CandidateDto(
+public record CandidateDto (
         String name,
         String phone,
         int voteCount,
         String position,
-        long election
+        long electionId
 ) {
 }

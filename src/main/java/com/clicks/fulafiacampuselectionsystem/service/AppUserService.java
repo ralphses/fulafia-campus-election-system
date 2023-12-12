@@ -36,7 +36,7 @@ public class AppUserService {
         }
 
         AppUser newUser = AppUser.builder()
-                .name(userDto.name())
+                .name(userDto.fullName())
                 .email(email)
                 .phone(phone)
                 .role(VOTER)
@@ -65,7 +65,7 @@ public class AppUserService {
         PageRequest pageRequest = PageRequest.of(page, 10);
 
         if(role != null && election != null) {
-            //Todo: fetch voters for this election
+            //Todo: fetch voters for this electionId
         }
         else if (role != null) {
             return userRepository.findByRole(role, pageRequest)
@@ -73,7 +73,7 @@ public class AppUserService {
                     .getContent();
         }
         else if(election != null) {
-            //Todo: to be implemented fetch users for this election
+            //Todo: to be implemented fetch users for this electionId
         }
         return userRepository.findAll(pageRequest)
                 .map(mapper::userDto)
@@ -87,7 +87,7 @@ public class AppUserService {
             user.setIdentity(userDto.identity());
             user.setRole(UserRole.valueOf(userDto.role()));
             user.setPhone(user.getPhone());
-            user.setName(userDto.name());
+            user.setName(userDto.fullName());
         } catch (IllegalArgumentException exception) {
             throw new InvalidParamsException("Invalid role " + userDto.role());
         }

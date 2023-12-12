@@ -31,15 +31,16 @@ public class ElectionService {
 
     public void create(ElectionDto electionDto) {
 
-        Client client = clientService.getClientById(electionDto.owner());
+        Client client = clientService.getClientById(electionDto.clientId());
 
         String clientName = client.getName();
         String electionTitle = electionDto.title();
 
         if(electionRepository.existsByTitleAndOwnerName(electionTitle, clientName)) {
-            throw new EntityExistException("Election with title " + electionTitle + " exist for client " + clientName);
+            throw new EntityExistException("Election with title " + electionTitle + " exist for clientId " + clientName);
         }
         try {
+
             LocalTime startTime = LocalTime.parse(electionDto.startTime());
             LocalTime stopTime = LocalTime.parse(electionDto.stopTime());
             LocalDate startDate = LocalDate.parse(electionDto.startDate());

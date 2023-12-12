@@ -9,6 +9,7 @@ import com.clicks.fulafiacampuselectionsystem.repository.ClientRepository;
 import com.clicks.fulafiacampuselectionsystem.utils.DtoMapper;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,14 +30,16 @@ public class ClientService {
         String clientName = clientDto.name();
 
         Optional<Client> clientOptional = clientRepository.findByName(clientName);
-        if(clientOptional.isEmpty()) {
+
+        if (clientOptional.isEmpty()) {
             clientRepository.save(
                     Client.builder()
                             .address(clientDto.address())
                             .ussdCode(clientRepository.count() + 1)
                             .name(clientName)
                             .build());
-        } else throw new EntityExistException("A client is already registered with the name " + clientName);
+        } else
+            throw new EntityExistException("A clientId is already registered with the fullName " + clientName);
     }
 
     public ClientDto get(Long id) {
@@ -44,6 +47,11 @@ public class ClientService {
     }
 
     public List<ClientDto> getClients(Long owner) {
+        if (owner == null) {
+            return clientRepository.findAll(Sort.by("fullName"))
+                    .stream().map(mapper::clientDto)
+                    .collect(Collectors.toList());
+        }
         AppUser user = userService.getUserById(owner);
         return user.getClients().stream().map(mapper::clientDto).collect(Collectors.toList());
     }
@@ -57,7 +65,7 @@ public class ClientService {
 
     public Client getClientById(Long id) {
         return clientRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("client with ID " + id + "Not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("clientId with ID " + id + "Not found"));
     }
 
     public void delete(Long id) {

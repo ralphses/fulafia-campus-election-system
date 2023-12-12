@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/user")
@@ -17,7 +18,7 @@ public class AppUserController {
 
     private final AppUserService userService;
 
-    @PostMapping("")
+    @PostMapping()
     public ResponseEntity<CustomResponse> register(@RequestBody UserDto userDto) {
         userService.register(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(new CustomResponse(true, "Success"));

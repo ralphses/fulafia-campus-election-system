@@ -25,11 +25,11 @@ public class ElectionPositionService {
 
     public void add(ElectionPositionDto positionDto) {
 
-        long clientId = positionDto.client();
+        long clientId = positionDto.clientId();
         String positionTitle = positionDto.title();
 
         if(positionRepository.existsByTitleAndOwnerId(positionTitle, clientId)) {
-            throw new EntityExistException("Position " + positionTitle + " for client " + positionTitle + " exists");
+            throw new EntityExistException("Position " + positionTitle + " for clientId " + positionTitle + " exists");
         }
 
         Client client = clientService.getClientById(clientId);

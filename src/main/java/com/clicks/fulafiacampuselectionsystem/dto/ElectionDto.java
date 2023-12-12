@@ -10,7 +10,7 @@ public record ElectionDto(
         String stopDate,
         String stopTime,
         List<CandidateDto> candidates,
-        long owner,
+        long clientId,
         long ussdCode
 ) {
 }

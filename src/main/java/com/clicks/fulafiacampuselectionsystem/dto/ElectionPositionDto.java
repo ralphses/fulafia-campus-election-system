@@ -4,6 +4,6 @@ public record ElectionPositionDto(
         String requirements,
         String title,
         double fee,
-        long client
+        long clientId
 ) {
 }

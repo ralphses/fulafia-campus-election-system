@@ -26,7 +26,7 @@ public class CandidateService {
 
     public void register(CandidateDto candidateDto) {
 
-        Election election = electionService.getById(candidateDto.election());
+        Election election = electionService.getById(candidateDto.electionId());
 
         Optional<ElectionPosition> positionOptional = election.getOwner()
                 .getElectionPositions()
@@ -35,14 +35,14 @@ public class CandidateService {
                 .findFirst();
 
         if(positionOptional.isEmpty()) {
-            throw new ResourceNotFoundException("Election position not found for specified election");
+            throw new ResourceNotFoundException("Election position not found for specified electionId");
         }
 
         String electionTitle = election.getTitle();
         String candidateName = candidateDto.name();
 
         if(candidateRepository.existsByUserNameAndElectionTitle(candidateName, electionTitle)) {
-            throw new EntityExistException("Candidate with name " + candidateName + " already registered for " + electionTitle);
+            throw new EntityExistException("Candidate with fullName " + candidateName + " already registered for " + electionTitle);
         }
 
         candidateRepository.save(

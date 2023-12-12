@@ -17,7 +17,10 @@ public class DtoMapper {
                 user.getIdentity(),
                 user.getEmail(),
                 user.getPhone(),
-                user.getRole().name());
+                "password",
+                user.getRole().name(),
+                "orgAddress",
+                "");
     }
 
     public ElectionPositionDto electionPositionDto(ElectionPosition electionPosition) {

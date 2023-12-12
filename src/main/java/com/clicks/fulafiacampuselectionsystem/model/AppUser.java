@@ -25,14 +25,9 @@ public class AppUser {
     private String email;
     private String phone;
 
-    @OneToMany
-    private List<Client> ownedClients;
 
     @Enumerated(EnumType.STRING)
     private UserRole role;
-
-    @ManyToMany(mappedBy = "members", fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
-    private List<Client> clients;
 
     @OneToMany
     private List<Transaction> transactions;

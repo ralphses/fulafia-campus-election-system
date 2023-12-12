@@ -4,6 +4,9 @@ import com.clicks.fulafiacampuselectionsystem.dto.UssdRequest;
 import com.clicks.fulafiacampuselectionsystem.model.Candidate;
 import com.clicks.fulafiacampuselectionsystem.model.Election;
 import com.clicks.fulafiacampuselectionsystem.model.ElectionPosition;
+import com.clicks.fulafiacampuselectionsystem.repository.CandidateRepository;
+import com.clicks.fulafiacampuselectionsystem.repository.ElectionPositionRepository;
+import com.clicks.fulafiacampuselectionsystem.repository.ElectionRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,9 @@ public class VoteService {
 
     private final ElectionService electionService;
     private final CandidateService candidateService;
+    private final CandidateRepository candidateRepository;
+    private  final ElectionPositionRepository electionPositionRepository;
+    private final ElectionRepository electionRepository;
     private final ElectionPositionService electionPositionService;
     private final AppUserService userService;
 
@@ -29,10 +35,12 @@ public class VoteService {
             return prepareResponse("Bad request", true);
         }
 
+
         //*3*4*5#
-        long electionCode = Long.parseLong(splitText[0]);
-        long positionCode = Long.parseLong(splitText[1]);
-        long candidateCode = Long.parseLong(splitText[2]);
+        long electionCode = Long.parseLong(splitText[0]);//10
+        long positionCode = Long.parseLong(splitText[1]);//40
+        long candidateCode = Long.parseLong(splitText[2]);//30
+
 
         try {
 

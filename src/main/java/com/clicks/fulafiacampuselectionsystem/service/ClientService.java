@@ -53,7 +53,8 @@ public class ClientService {
                     .collect(Collectors.toList());
         }
         AppUser user = userService.getUserById(owner);
-        return user.getClients().stream().map(mapper::clientDto).collect(Collectors.toList());
+        return clientRepository.findAll().stream().filter(client -> client.getOwner().getId().equals(user.getId())).map(mapper::clientDto).collect(Collectors.toList());
+
     }
 
     public void update(Long id, ClientDto clientDto) {

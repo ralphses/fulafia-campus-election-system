@@ -3,12 +3,14 @@ package com.clicks.fulafiacampuselectionsystem.controller;
 import com.clicks.fulafiacampuselectionsystem.dto.UssdRequest;
 import com.clicks.fulafiacampuselectionsystem.service.VoteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.http.MediaType.APPLICATION_FORM_URLENCODED_VALUE;
 
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/vote")

@@ -18,6 +18,7 @@ public class VoteController {
 
     @PostMapping(value = "/handle", consumes = APPLICATION_FORM_URLENCODED_VALUE)
     public String handleUssdRequest(UssdRequest ussdRequest) {
+        System.out.println("ussdRequest = " + ussdRequest);
         return voteService.vote(ussdRequest);
     }
 
